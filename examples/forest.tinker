@@ -1,0 +1,44 @@
+place "Spooky forest" do
+  description <<-WORDS
+    You are in a very spooky forest. Owls are hooting eerily, and you can hear
+    things moving around, just out of sight. To the north you can see some
+    mountains poking above the trees. To the west, the forest seems to get
+    thinner.
+  WORDS
+
+  go "north", "Mountains"
+  go "west", "Plains"
+end
+
+place "Mountains" do
+  description "You're in the mountains now, and it is very cold. There is a locked door here."
+  go "through the door", "Dark cave", :with => "rusted key"
+  go "south", "Spooky forest"
+end
+
+place "Dark cave" do
+  description "The cave is very dark. You can hear something breathing further on."
+  go "further" do
+    to "Winner", :with => "shiny sword"
+    to "Monster", :without => "shiny sword"
+  end
+  go "out", "Mountains"
+end
+
+place "Monster" do
+  description "Oh, no! There was a scary monster, and it ate you all up!"
+end
+
+place "Plains" do
+  description "The plains are very large, and very flat. Lots of grass."
+  go "east", "Spooky forest"
+end
+
+place "Winner" do
+  description "A huge monster jumps out at you, but you fight it off with your sword! You find a huge hoard of treasure. Congratulations, you win!"
+end
+
+item "rusted key", :in => "Spooky forest"
+item "shiny sword", :in => "Plains"
+
+start :at => "Spooky forest"

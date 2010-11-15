@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'tinker'
+
+if ARGV.length == 1
+  Tinker.play(ARGV.first)
+else
+  warn "usage: #{$0} <game-file>"
+end
